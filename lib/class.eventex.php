@@ -111,7 +111,7 @@ abstract class EventEx extends Event
 	// initilaize the DB manipulator object
 	protected function setupDatabaseManipulator()
 	{
-		require_once(WORKSPACE . '/api/class.databasemanipulator.php');
+		require_once(EXTENSIONS . '/databasemanipulator/lib/class.databasemanipulator.php');
 		DatabaseManipulator::associateParent($this->_Parent);
 	}		
 	
