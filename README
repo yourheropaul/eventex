@@ -1,29 +1,30 @@
-EventEx: Multiple section form submission for Symphony CMS
-------------------------------------
+<h2 id="eventex_multiple_section_form_submission_for_symphony_cms">EventEx: Multiple section form submission for Symphony CMS</h2>
 
-Version: 1.0
-Author:  http://github.com/yourheropaul 
+<p>Version: 1.0
+Author:  http://github.com/yourheropaul </p>
 
----
+<hr>
 
-[CHANGE LOG]
+<p>[CHANGE LOG]</p>
 
-1.0 - initial build
+<p>1.0 - initial build</p>
 
----
+<hr>
 
-[ABSTRACT]
+<p>[ABSTRACT]</p>
 
-Typically Symphony events have been restricted to creating and modifying entries in a single section, a conceptual limitation that, amongst other minor things, stunts the creation of complex, single-page forms. EventEx (named rather dissapointingly for its position in the programmatic hierarchy: EXtending the Event class) aims to provide more power and flexibility to user input, especially in conjunction with other utilities, especially Form Controls (http://github.com/nickdunn/form-controls/).
+<p>Typically Symphony events have been restricted to creating and modifying entries in a single section, a conceptual limitation that, amongst other minor things, stunts the creation of complex, single-page forms. EventEx (named rather dissapointingly for its position in the programmatic hierarchy: EXtending the Event class) aims to provide more power and flexibility to user input, especially in conjunction with other utilities, especially Form Controls (http://github.com/nickdunn/form-controls/).</p>
 
----
+<hr>
 
-[INSTALLATION]
+<p>[INSTALLATION]</p>
 
-** Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master*  
-** Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.*
+<p><em>* Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master</em>
+<em>* Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.</em></p>
 
-1. Place the 'eventex' directory in the Symphony 'extensions' director.
-2. Enable the extension in the 'System/Extensions' menu of the Symphony back-end.
+<ol>
+<li>Place the &#8216;eventex&#8217; directory in the Symphony &#8216;extensions&#8217; director.</li>
+<li>Enable the extension in the &#8216;System/Extensions&#8217; menu of the Symphony back-end.</li>
+</ol>
 
----
+<hr>
