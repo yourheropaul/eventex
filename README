@@ -1,4 +1,29 @@
-DBM
+EventEx: Multiple section form submission for Symphony CMS
 ------------------------------------
 
-Fixme
+Version: 1.0
+Author:  http://github.com/yourheropaul 
+
+---
+
+[CHANGE LOG]
+
+1.0 - initial build
+
+---
+
+[ABSTRACT]
+
+Typically Symphony events have been restricted to creating and modifying entries in a single section, a conceptual limitation that, amongst other minor things, stunts the creation of complex, single-page forms. EventEx (named rather dissapointingly for its position in the programmatic hierarchy: EXtending the Event class) aims to provide more power and flexibility to user input, especially in conjunction with other utilities, especially Form Controls (http://github.com/nickdunn/form-controls/).
+
+---
+
+[INSTALLATION]
+
+** Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master*  
+** Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.*
+
+1. Place the 'eventex' directory in the Symphony 'extensions' director.
+2. Enable the extension in the 'System/Extensions' menu of the Symphony back-end.
+
+---
