@@ -1,30 +1,97 @@
-<h2 id="eventex_multiple_section_form_submission_for_symphony_cms">EventEx: Multiple section form submission for Symphony CMS</h2>
+EventEx: Multiple section form submission for Symphony CMS
+==========================================================
 
-<p>Version: 1.0
-Author:  http://github.com/yourheropaul </p>
+Version: 1.0
+Author:  http://github.com/yourheropaul 
 
-<hr>
 
-<p>[CHANGE LOG]</p>
+[CHANGE LOG]
 
-<p>1.0 - initial build</p>
+1.0 - initial build
 
-<hr>
 
-<p>[ABSTRACT]</p>
+[ABSTRACT]
 
-<p>Typically Symphony events have been restricted to creating and modifying entries in a single section, a conceptual limitation that, amongst other minor things, stunts the creation of complex, single-page forms. EventEx (named rather dissapointingly for its position in the programmatic hierarchy: EXtending the Event class) aims to provide more power and flexibility to user input, especially in conjunction with other utilities, especially Form Controls (http://github.com/nickdunn/form-controls/).</p>
+Typically Symphony Events have been restricted to creating and modifying entries in a single section, a conceptual limitation that, amongst other minor things, stunts the creation of complex, single-page forms. EventEx (named rather dissapointingly for its position in the programmatic hierarchy: EXtending the Event class) aims to provide more power and flexibility to user input, especially in conjunction with other utilities, especially Form Controls (http://github.com/nickdunn/form-controls/).
 
-<hr>
 
-<p>[INSTALLATION]</p>
+[INSTALLATION]
 
-<p><em>* Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master</em>
-<em>* Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.</em></p>
+** Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master
+** Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.
 
-<ol>
-<li>Place the &#8216;eventex&#8217; directory in the Symphony &#8216;extensions&#8217; director.</li>
-<li>Enable the extension in the &#8216;System/Extensions&#8217; menu of the Symphony back-end.</li>
-</ol>
+1. Place the 'eventex' directory in the Symphony 'extensions' director.
+2. Enable the extension in the 'System/Extensions' menu of the Symphony back-end.
 
-<hr>
+
+[OVERVIEW: A CASE STUDY]
+
+EventEx specifics can get confusing, so it's best to start with an example. Imagine a Symphony build, perhaps not so different from the one you are currently working on, which has will allow users to login and contribute to the site content. There are two kinds of users: Musicians, who can upload media files as well as comment on uploaded media files, and Fans, who can comment on media files but not upload them. It's no so difficult to believe that you might have built a login system that identifies users by email address and password, but further imagine that there are significant data storage requirements for Musicians and Fans, so they'll require separate Symphony sections; also, for whatever reason you care to invent, the login system is most efficient when it uses a single section to lookup data, meaning that you either have to replicate the email address, password and other related fields (like a cookie token or preferences) in both sections or, more efficiently, create three sections: Users, Musicians and Fans.
+
+Peachy, except that your user registration form has hit a glass ceiling - information is now spread beyond the scope of the fields[] array. EventEx introduces a slight syntactical change (it should be noted that EventEx does not modify existing Events) in the form markup.  Where before you might have used a markup like:
+
+<form action="" method="post">
+  username: <input type="text" name="fields[name]" />
+  password: <input type="text" name="fields[password]" />
+
+  <input type="submit" name="action[create-musician]">
+</form>
+
+EventEx uses a more symbolic approach, referring to the section handle in the form control:
+
+<form action="" method="post">
+  username: <input type="text" name="musicians[name]" />
+  password: <input type="text" name="users[password]" />
+
+  <input type="submit" name="action[create-musician]">
+</form>
+
+Of course, both examples assume that both the Musicians and Users have only one required field (there's also an issue of security, which is covered in the [USE AND INTEGRATION] segment.) The EventEx form above will create a new entry in each section with the details provided, which is nice but rather useless - how are the two sections going to be linked together? The most common approach is the Select Box Link field (now part of the Symphony core) which will in this case be called 'Musician Entry' and attached the to Users section, under the assumption that the login functionality will use it to find the associated Musician or Fan entry. A single line of markup will suffice:
+
+<input type="hidden" name="users[musician-entry]" value="musicians[system:id]" />
+
+When a new entry is created, the system ID is logged, and can be used to auto-populate other field values. The value can actually contain any combination of string and section-handle[field-handle]s, so, imagining there's a field called 'Password reminder' the the Musicians section, this would be perfectly valid and do what you'd imagine:
+
+<form action="" method="post">
+  username: <input type="text" name="musicians[name]" />
+  password: <input type="text" name="users[password]" />
+
+  <input type="hidden" name="musicians[password-reminder]" value="Your password is users[password]" />
+    
+  <input type="hidden" name="users[musician-entry]" value="musicians[system:id]" />
+
+  <input type="submit" name="action[create-musician]">
+</form>
+
+Note that the order of the field is irrelevant from a processing perspective; there's a two-pass system in place to ensure that order-of-approach is a trivial issue. There's significantly more to the EventEx engine, but the only other thing that's used ubiquitously is the redirection override. Where in regular events one might use:
+
+<input type="hidden" name="redirect" value="/path/to/url" />
+
+We can now use parse-redirect in a similar way, except taking into account the string parsing system noted above, it becomes more interesting:
+
+<input type="hidden" name="parse-redirect" value="/members/musicians[name]/" />
+
+In the case of redirects, all values are transformed into URL-friendly handles in the usual way. There are several other issues that EventEx squeals though like heated buzsaw
+
+
+[USE AND INTEGRATION]
+
+1. CREATING THE EVENT
+---------------------
+
+[MORE SOPHISTICATED SYNTAX]
+
+Todo
+
+
+[TRANSACTIONAL MODEL]
+
+Todo
+
+
+[MULTIPLE ENTRIES]
+
+Todo
+
+
+[EDITING ENTRIES]
