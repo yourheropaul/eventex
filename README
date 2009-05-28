@@ -20,7 +20,7 @@ Typically Symphony Events have been restricted to creating and modifying entries
 ** Note: The newest version is available at http://github.com/yourheropaul/eventex/tree/master
 ** Note also: EventEx has a dependency - DatabaseManipulator (http://github.com/yourheropaul/databasemanipulator) - which in turn has a dependency: ASDC (http://github.com/pointybeard/asdc). Both are small, unobtrusive Symphony extensions, and extremely useful in their own right.
 
-1. Place the 'eventex' directory in the Symphony 'extensions' director.
+1. Place the 'eventex' directory in the Symphony 'extensions' directory.
 2. Enable the extension in the 'System/Extensions' menu of the Symphony back-end.
 
 
