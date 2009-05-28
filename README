@@ -81,11 +81,12 @@ In the case of redirects, all values are transformed into URL-friendly handles i
 
 Future versions will doubtless feature a Symphony back-end manager, but such niceties have been sacrificed in order to get the main features off the ground and stable. The only real downside of EventEx, therefore, is that all events must be custom (which is to say that they have to be modified manually.) Use the normal Symphony back-end to create an event, then, and modify the resultant .php file. There are several differences between standard Events and EventEx-powered Events at the code level:
 
-1. The class definition extends 'EventEx', not 'Event'
-2. Some static methods (allowEditorToParse(), documentation() and load() ) are declared in the parent class, and usually don't need to be overloaded.
-3. The method getSource() defaultly returns a system ID string, but given that EventEx deals in section name handles, the best known practise is to have the method return an array of said handles: this consolidates the affected sections and help maintain the original workflow.
-4. Class constants like ROOTELEMENT, as well as system member variables like $eParamFILTERS, are ignored by the EventEx core. The root node of resultant XML is determined by the dissecting and un-handlising the class name (see point 2 below.)
-5. Instead of including the event processing file ("include(TOOLKIT . '/events/event.section.php');") an extended Event calls a protected method called updateNamedSections(), the argument for which is an array of section handles to process.
+1. The class.eventex.php file is required, and usually resides at '{EXTENSIONS}/eventex/lib/class.eventex.php'.
+2. The class definition extends 'EventEx', not 'Event'
+3. Some static methods (allowEditorToParse(), documentation() and load() ) are declared in the parent class, and usually don't need to be overloaded.
+4. The method getSource() defaultly returns a system ID string, but given that EventEx deals in section name handles, the best known practise is to have the method return an array of said handles: this consolidates the affected sections and help maintain the original workflow.
+5. Class constants like ROOTELEMENT, as well as system member variables like $eParamFILTERS, are ignored by the EventEx core. The root node of resultant XML is determined by the dissecting and un-handlising the class name (see point 2 below.)
+6. Instead of including the event processing file ("include(TOOLKIT . '/events/event.section.php');") an extended Event calls a protected method called updateNamedSections(), the argument for which is an array of section handles to process.
 
 Now that it's written down, the above points are rather dull.  Here, then, is a perfectly functional extended Event:
 
