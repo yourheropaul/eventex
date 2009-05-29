@@ -1,10 +1,10 @@
 <?php
 
-	Class extension_DatabaseManipulator extends Extension{
+	Class extension_EventEx extends Extension{
 
 		public function about(){
-			return array('name' => 'DatabaseManipulator: PHP-level, SQL-like access to the database',
-						 'version' => '0.4',
+			return array('name' => 'EventEx: multiple section form submission',
+						 'version' => '1.0',
 						 'release-date' => '2009-01-21',
 						 'author' => array('name' => 'Your Hero Paul',
 										   'website' => 'http://github.com/yourheropaul/',
