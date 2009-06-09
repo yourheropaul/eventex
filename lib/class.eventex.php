@@ -391,9 +391,14 @@ Class GenericSectionUpdate extends Event
 		// Disgiuse escaped hyphens
 		$_POST['fields'][$key] = preg_replace('/\\\\-/', '{@hyphen@}', $_POST['fields'][$key]);
 		
-		// Run all the callbacks
-		$_POST['fields'][$key] = preg_replace_callback(EventEx::REGEX_PLACEHOLDER, array($this, 'placeholderCallback'), $_POST['fields'][$key]);
+		/*
+		** Run all the callbacks
+		*/
 		
+		// If pcre.backtrack_limit is exceeded, preg_replace_callback returns NULL
+		if ($new_value = preg_replace_callback(EventEx::REGEX_PLACEHOLDER, array($this, 'placeholderCallback'), $_POST['fields'][$key]))
+			$_POST['fields'][$key] = $new_value;	
+					
 		// Un-disguise escaped hyphens
 		$_POST['fields'][$key] = preg_replace('/{@hyphen@}/', '-', $_POST['fields'][$key]);				
 		
@@ -525,6 +530,7 @@ Class GenericSectionUpdate extends Event
 		$_POST['fields'] = $post_backup;
 		$_FILES['fields'] = $files_backup;		
 		$_POST['id'] = $id_backup;			
+	
 		
 		// Set the result attributes
 		$result->setAttribute( EventEx::ATTRIBUTE_SECTION_ID , $iSectionID);
