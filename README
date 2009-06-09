@@ -7,7 +7,8 @@ Author:  http://github.com/yourheropaul
 
 [CHANGE LOG]
 
-1.0 - initial build
+1.0  - initial build
+1.01 - fixed pcre.backtrack_limit workaround for filenames containing square brackets. 
 
 
 [ABSTRACT]
